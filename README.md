@@ -140,4 +140,4 @@ src/
 
 ---
 
-Built for the Daemo Winter Developer Fellowship.
+Built for Daemo.
