@@ -1,4 +1,4 @@
-# Travel Expense Agent, Data + Analytics
+# Travel Expense Agent
 
 An AI-powered travel expense approval system built with [Daemo](https://app.daemo.ai). Employees can submit trips and expenses through natural language, and finance managers can review and approve them, all through a chat interface.
 
