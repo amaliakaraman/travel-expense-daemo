@@ -35,7 +35,6 @@ The AI handles the conversation, but all the actual work happens through type-sa
 You (chat) → Daemo AI → Your functions → Supabase
 ```
 
-Your code runs locally. When you chat in the Daemo playground, it figures out which function to call, sends a request to your running service, and your function does the actual database work. The AI never touches your database directly.
 
 ## Quick setup
 
@@ -71,7 +70,6 @@ npm install
 npm run dev
 ```
 
-You should see your 9 functions register, then "Authentication successful". Head to [app.daemo.ai](https://app.daemo.ai), open your agent's Playground, and start chatting!
 
 ## Switching roles
 
@@ -83,7 +81,7 @@ To switch between users, adjust your `.env`:
 | Bob (sales) | `22222222-2222-2222-2222-222222222222` | employee |
 | David (finance) | `44444444-4444-4444-4444-444444444444` | finance_manager |
 
-Change the values, and restart with `npm run dev`. Note: The AI will only let you do things your role's permissions allow.
+Change the values, and restart with `npm run dev`. The AI will only let you do things your role's permissions allow.
 
 ## The 9 functions
 
@@ -131,12 +129,12 @@ src/
 
 ## Troubleshooting
 
-**"Failed to connect to Supabase"** — Check your URL and service role key. Make sure you ran the schema.sql.
+**"Failed to connect to Supabase"** Check your URL and service role key + make sure the schema.sql ran.
 
 
-**"FORBIDDEN" when trying something** — Change `SESSION_ROLE` to a user with the permissions needed in `.env` and restart.
+**"FORBIDDEN" when trying something** Change `SESSION_ROLE` to a user with the permissions needed in `.env` and restart
 
-**Connection keeps resetting** — Make sure you're using `https://engine.daemo.ai:50052` as the gateway URL
+Use `https://engine.daemo.ai:50052` as the gateway URL
 
 ---
 
