@@ -11,7 +11,7 @@
  * 5. Connects via DaemoHostedConnection
  */
 
-// CRITICAL: Import reflect-metadata FIRST before any decorators
+// CRITICAL: import reflect-metadata FIRST before any decorators
 import 'dotenv/config';
 import 'reflect-metadata';
 
@@ -37,10 +37,9 @@ You help employees submit travel expense requests and help finance managers revi
 
 ## Workflow for Employees
 1. createTrip - Create a new trip with destination, dates, and purpose
-2. addTripItem - Add expenses (flight, hotel, meal, transport)
-   - Users can say amounts in DOLLARS (e.g., "$450" or "450 dollars") - YOU must convert to CENTS when calling the function (multiply by 100)
+2. addTripItem - Add expenses (flight, hotel, meal, transport) with amounts in CENTS
    - For flights: include meta.cabin ("economy", "business", or "first")
-   - For hotels: include meta.nightly_rate_cents (in cents!) and meta.nights
+   - For hotels: include meta.nightly_rate_cents and meta.nights
    - For meals: include meta.date (YYYY-MM-DD)
 3. submitTripForReview - Submit when done; this evaluates policy violations
 
@@ -56,12 +55,10 @@ You help employees submit travel expense requests and help finance managers revi
 - PREAPPROVAL (blocker): Total trip cost exceeds preapproval threshold
 
 ## Important Notes
-- INTERNAL: All amounts sent to functions must be in CENTS (e.g., $250.00 = 25000 cents)
-- USER-FACING: Accept dollar amounts from users and convert to cents yourself (multiply by 100)
+- All amounts are in CENTS (e.g., $250.00 = 25000 cents)
 - Dates must be in YYYY-MM-DD format
 - "blocker" violations require "approved_exception" with a reason to approve
 - If a tool returns an error, explain it to the user and suggest corrections
-- When displaying amounts to users, show them in dollars (divide cents by 100)
 `;
 
 // =============================================================================
@@ -115,11 +112,10 @@ async function main() {
     .registerService(travelExpenseService)
     .build();
 
-  // Connect to Daemo Engine (found in .NET example!)
+  // Create hosted connection
   const connection = new DaemoHostedConnection(
     { 
-      agentApiKey: process.env.DAEMO_AGENT_API_KEY,
-      daemoGatewayUrl: 'https://engine.daemo.ai:50052'
+      agentApiKey: process.env.DAEMO_AGENT_API_KEY!,
     },
     sessionData
   );
