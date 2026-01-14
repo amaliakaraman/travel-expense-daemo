@@ -113,8 +113,10 @@ async function main() {
     .build();
 
   // Create hosted connection
+  const gatewayUrl = process.env.DAEMO_GATEWAY_URL || 'https://engine.daemo.ai:50052';
   const connection = new DaemoHostedConnection(
     { 
+      daemoGatewayUrl: gatewayUrl,
       agentApiKey: process.env.DAEMO_AGENT_API_KEY!,
     },
     sessionData
